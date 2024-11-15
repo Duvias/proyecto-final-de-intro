@@ -16,17 +16,28 @@ def atencion():
         print("------------Menú--------------\nBebidas-----------------------")
         bebidas_disponibles = [(bebida, precio) for bebida, precio in bebidas_precio.items() if bebidas_cantidad.get(bebida, 0) > 0]
         print(f"-{"\n-".join([f"{i+1}. {bebida} - ${precio}" for i, (bebida, precio) in enumerate(bebidas_disponibles)])}")
-        indice_bebida=int(input("Que bebida deseas?(Utiliza los números para elegir): "))
-        bebida, precio= bebidas_disponibles[indice_bebida-1]
-        bebida_cantidad=int(input(f"Cuantas {bebida} desea?: "))
-        mas_bebida = input("Desea otra bebida?(SI/NO): ")
+        while True:
+            indice_bebida=int(input("Que bebida deseas?(Utiliza los números para elegir): "))
+            bebida, precio= bebidas_disponibles[indice_bebida-1]
+            bebida_cantidad=int(input(f"Cuantas {bebida} desea?: "))
+            mas_bebida = input("Desea otra bebida?(SI/NO): ")
+            while (mas_bebida.upper() == "SI" or mas_bebida.upper() == "NO") == False:
+                    print("Por favor responde SI o NO")
+                    mas_bebida = input("Desea otro alimento?(SI/NO): ")
+            if mas_bebida.upper() == "NO":
+                break
         
         print(f"Alimentos-----------------------\n-{"\n-".join([f"({i+1}) {alimento}: ${precio}" for i, (alimento, precio) in enumerate(alimentos_precio.items()) if alimentos_cantidad.get(alimento, 0) > 0])}")
         alimentos_disponibles = [(alimento, precio) for alimento, precio in alimentos_precio.items() if alimentos_cantidad.get(alimento, 0) > 0]
-        indice_alimento=int(input("Que alimento deseas?(Utiliza los números para elegir): "))
-        alimento, precio= alimentos_disponibles[indice_alimento-1]
-        alimento_cantidad=int(input(f"Cuantas {alimento} desea?: "))
-        mas_alimento = input("Desea otro alimento?(SI/NO): ")
-
+        while True:
+            indice_alimento=int(input("Que alimento deseas?(Utiliza los números para elegir): "))
+            alimento, precio= alimentos_disponibles[indice_alimento-1]
+            alimento_cantidad=int(input(f"Cuantas {alimento} desea?: "))
+            mas_alimento = input("Desea otro alimento?(SI/NO): ")
+            while (mas_alimento.upper() == "SI" or mas_alimento.upper() == "NO") == False:
+                print("Por favor responde SI o NO")
+                mas_alimento = input("Desea otro alimento?(SI/NO): ")
+            if mas_alimento.upper() == "NO":
+                break
 
 atencion()
