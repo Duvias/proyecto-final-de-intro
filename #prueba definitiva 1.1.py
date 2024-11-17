@@ -3,6 +3,23 @@ bebidas_precio = {"Coca-Cola 500ml":3000,"Coca-Cola 250ml":1600,"Jugo hit 1.2L":
 alimentos_cantidad= {"Empanada":21,"Papa":18,"Papa rellena":9,"Salchichón":9,"Ala de pollo":4,"Pescado":5,"Aborrajado":10}
 bebidas_cantidad = {"Coca-Cola 500ml":13,"Coca-Cola 250ml":20,"Jugo hit 1.2L":18,"Jugo hit 400ml":12,"Jugo hit 250ml":13,"Jugo hit 250ml":15,"Postobon Acqua":16,"Speedmax": 18,"Natumalta 200ml":8,"Natumalta 400ml":27,"Agua cristal": 40,"Agua con gas cristal": 20,"Postobon personal vidrio":32,"Postobon litro vidrio":20,"Postobon litro plastico":23,"Pepsi grande":15,"Natumalta grande":14,"Tropikola":13,"Squash personal":10,"Mr tea personal":7,"Tutti Frutti":9,"H20h": 16}
 
+def gestion_inv():
+    print ("\nLista Actualizada:")
+    print ("Alimentos:")
+    # Se recorren las posiciones de las dos listas mostrando la posición, la cantidad y su precio
+    for posicion,producto in enumerate(alimentos_precio):
+        cantidad = alimentos_cantidad[producto]
+        precio = alimentos_precio[producto]
+        print (f"Posición[{posicion}]: {producto} - Valor: ${precio} - Cantidad: {cantidad}")
+    print ("\nBebidas:")
+    for posicion,producto in enumerate(bebidas_precio):
+        cantidad = bebidas_cantidad[producto]
+        precio = bebidas_precio[producto]
+        print (f"Posición [{posicion}]: {producto} - Valor: ${precio} - Cantidad: {cantidad}")
+    
+
+gestion_inv()   
+
 def atencion():
     # Inicializamos los totales para bebidas y alimentos solo con las compras del usuario
     total_bebidas_usuario = 0
