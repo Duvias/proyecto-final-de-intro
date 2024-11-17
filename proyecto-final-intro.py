@@ -17,9 +17,16 @@ def atencion():
         bebidas_disponibles = [(bebida, precio) for bebida, precio in bebidas_precio.items() if bebidas_cantidad.get(bebida, 0) > 0]
         print(f"-{"\n-".join([f"{i+1}. {bebida} - ${precio}" for i, (bebida, precio) in enumerate(bebidas_disponibles)])}")
         while True:
+            #
             indice_bebida=int(input("Que bebida deseas?(Utiliza los números para elegir): "))
+            
+            
             bebida, precio= bebidas_disponibles[indice_bebida-1]
+            
+            #
             bebida_cantidad=int(input(f"Cuantas {bebida} desea?: "))
+            
+            #
             mas_bebida = input("Desea otra bebida?(SI/NO): ")
             while (mas_bebida.upper() == "SI" or mas_bebida.upper() == "NO") == False:
                     print("Por favor responde SI o NO")
@@ -30,9 +37,32 @@ def atencion():
         print(f"Alimentos-----------------------\n-{"\n-".join([f"({i+1}) {alimento}: ${precio}" for i, (alimento, precio) in enumerate(alimentos_precio.items()) if alimentos_cantidad.get(alimento, 0) > 0])}")
         alimentos_disponibles = [(alimento, precio) for alimento, precio in alimentos_precio.items() if alimentos_cantidad.get(alimento, 0) > 0]
         while True:
-            indice_alimento=int(input("Que alimento deseas?(Utiliza los números para elegir): "))
+            # Validacion de que la respuesta del indice es correcta
+            while True:
+                try:
+                    indice_alimento=int(input("Que alimento deseas?(Utiliza los números para elegir): "))
+                    if len(alimentos_cantidad) >= indice_alimento > 0:    
+                        break
+                    else:
+                        print(f"Por favor, solo digite el numero de alimentos disponibles, intente de nuevo")
+                except ValueError:
+                    print("Entrada no válida. Por favor, ingresa un número entero")
+            
+            
             alimento, precio= alimentos_disponibles[indice_alimento-1]
-            alimento_cantidad=int(input(f"Cuantas {alimento} desea?: "))
+            
+            # Comprobacion de que entrada de la cantidad sea valida(Falta restar la cantidad de lo que se pide al inventario)
+            while True:
+                try:
+                    alimento_cantidad=int(input(f"Cuantas {alimento} desea?: "))
+                    if alimentos_cantidad[alimento] >= alimento_cantidad > 0:    
+                        break
+                    else:
+                        print(f"Esa cantidad de {alimento} no esta disponible, tenemos {alimentos_cantidad[alimento]} {alimento}, intente de nuevo")
+                except ValueError:
+                    print("Entrada no válida. Por favor, ingresa un número entero")
+            
+            # Pedir comprobar si desea mas alimento y asegurarse que la respuesta sea SI o NO
             mas_alimento = input("Desea otro alimento?(SI/NO): ")
             while (mas_alimento.upper() == "SI" or mas_alimento.upper() == "NO") == False:
                 print("Por favor responde SI o NO")
